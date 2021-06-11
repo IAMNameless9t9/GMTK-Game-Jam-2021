@@ -1,3 +1,17 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/DevLevel.tscn" type="PackedScene" id=2]
 
 [node name="Main" type="Node2D"]
+
+[node name="MainCamera" type="Camera2D" parent="."]
+position = Vector2( 392, 328 )
+current = true
+zoom = Vector2( 1.5, 1.5 )
+smoothing_enabled = true
+
+[node name="LevelController" type="Node2D" parent="."]
+
+[node name="CurrentMap" type="Node2D" parent="LevelController"]
+
+[node name="DevLevel" parent="LevelController/CurrentMap" instance=ExtResource( 2 )]
