@@ -495,7 +495,7 @@ tile_data = PoolIntArray( -196616, 3, 0, -196615, 3, 0, -196614, 3, 0, -196613, 
 [node name="Entities" type="Node2D" parent="."]
 
 [node name="Owner" parent="Entities" instance=ExtResource( 4 )]
-position = Vector2( 280, -32 )
+position = Vector2( 512, -56 )
 
 [node name="Dog" parent="Entities" instance=ExtResource( 2 )]
 position = Vector2( 312, 24 )
@@ -514,6 +514,9 @@ shape = SubResource( 2 )
 
 [node name="BarrierBlock" parent="Barriers" instance=ExtResource( 3 )]
 position = Vector2( 160, 416 )
+
+[node name="BarrierBlock13" parent="Barriers" instance=ExtResource( 3 )]
+position = Vector2( 88, -48 )
 
 [node name="BarrierBlock2" parent="Barriers" instance=ExtResource( 3 )]
 position = Vector2( 224, 416 )
@@ -547,3 +550,4 @@ position = Vector2( 800, 416 )
 
 [node name="BarrierBlock12" parent="Barriers" instance=ExtResource( 3 )]
 position = Vector2( 864, 416 )
+scale = Vector2( 1, 1.10913 )

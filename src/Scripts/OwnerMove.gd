@@ -1,40 +1,61 @@
-extends Area2D
+extends KinematicBody2D
 
-var tile_size = 16 * 4
-var transition_speed = 2
-var inputs = {"left": Vector2.LEFT, "right": Vector2.RIGHT}
+enum Directions {
+	None,
+	Left,
+	Right
+}
 
-onready var ray = $RayCast2D
-onready var tween = $Tween
-onready var fps = $Commander/CanvasLayer/FPS
+onready var PositionLabel = $CanvasLayer/Label
 
-func _process(delta):
-	var framerate = str(Engine.get_frames_per_second())
-	fps.text = "FPS: " + framerate
+
+##MOVEMENT VARIABLES
+export var MovementSpeed = 32 * 4
+export var CurrentDirection = Directions.None
+
+var Arrived = true
+
+##STARTING POSITION
+var Spawnpoint = Vector2()
+var StartingY = -64
+var StartingX = 512
 
 func _ready():
-	position = position.snapped(Vector2.ONE * tile_size)
-	position += Vector2.ONE * (tile_size / 2)
-	position.y -= (tile_size)
+	Spawnpoint = Vector2(StartingX, StartingY)
+	position = Spawnpoint
 	
-func _unhandled_input(event):
-	if tween.is_active():
-		return
-	for dir in inputs.keys():
-		if event.is_action_pressed(dir):
-			move(dir)
-			
-func move(dir):
-	ray.cast_to = inputs[dir] * tile_size
-	ray.force_raycast_update()
-	if !ray.is_colliding():
-		##position += inputs[dir] * tile_size
+func _process(delta):
+	
+	PositionLabel.text = "Position\nX: " + str(position.x) + "\nY: " + str(position.y)
+	
+	_get_input()
+	
+	var X = position.x
+	
+	if CurrentDirection == Directions.Left:
+		X -= MovementSpeed * delta
+	if CurrentDirection == Directions.Right:
+		X += MovementSpeed * delta
 		
-		move_tween(dir)
+	position = Vector2(X,StartingY)
 		
-func move_tween(dir):
-	tween.interpolate_property(self, "position",
-		position, position + inputs[dir] * tile_size,
-		1.0/transition_speed, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	tween.start()
+func _get_input():
+	if Input.is_action_pressed("left"):
+		Arrived = false
+		CurrentDirection = Directions.Left
+	if Input.is_action_pressed("right"):
+		Arrived = false
+		CurrentDirection = Directions.Right	
+	if Input.is_action_just_released("left"):
+		if !int(position.x) % 16 and Arrived == false:
+			pass
+		else:
+			CurrentDirection = Directions.None
+			Arrived = true
+	if Input.is_action_just_released("right"):
+		if !int(position.x) % 16 and Arrived == false:
+			pass
+		else:
+			CurrentDirection = Directions.None
+			Arrived = true
 
