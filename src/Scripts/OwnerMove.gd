@@ -6,12 +6,19 @@ enum Directions {
 	Right
 }
 
+export var CanMove = true
+
 onready var PositionLabel = $CanvasLayer/Label
+onready var BarrierCollider = $Area2D/CollisionShape2D
+onready var LeftTrans = $Area2D/Left
+onready var RightTrans = $Area2D/Right
+onready var CenterTrans = $Area2D/Center
 
 
 ##MOVEMENT VARIABLES
-export var MovementSpeed = 32 * 4
+export var MovementSpeed = 64 * 4
 export var CurrentDirection = Directions.None
+var velocity = Vector2.ZERO
 
 var Arrived = true
 
@@ -23,12 +30,9 @@ var StartingX = 512
 func _ready():
 	Spawnpoint = Vector2(StartingX, StartingY)
 	position = Spawnpoint
+	BarrierCollider.position = CenterTrans.position
 	
-func _process(delta):
-	
-	PositionLabel.text = "Position\nX: " + str(position.x) + "\nY: " + str(position.y)
-	
-	_get_input()
+func _physics_process(delta):
 	
 	var X = position.x
 	
@@ -38,24 +42,35 @@ func _process(delta):
 		X += MovementSpeed * delta
 		
 	position = Vector2(X,StartingY)
+	
+	velocity = Vector2.ZERO
+	velocity = position.direction_to(Vector2(X,StartingY)) * MovementSpeed
+	velocity = move_and_slide(velocity)
+	
+func _process(delta):
+	
+	PositionLabel.text = "OwnPosition\nX: " + str(position.x) + "\nY: " + str(position.y)
+	
+	if CanMove:
+		_get_input()
 		
 func _get_input():
 	if Input.is_action_pressed("left"):
-		Arrived = false
 		CurrentDirection = Directions.Left
+		BarrierCollider.position = LeftTrans.position
 	if Input.is_action_pressed("right"):
-		Arrived = false
 		CurrentDirection = Directions.Right	
+		BarrierCollider.position = RightTrans.position
 	if Input.is_action_just_released("left"):
-		if !int(position.x) % 16 and Arrived == false:
-			pass
-		else:
-			CurrentDirection = Directions.None
-			Arrived = true
+		CurrentDirection = Directions.None
+		BarrierCollider.position = CenterTrans.position
 	if Input.is_action_just_released("right"):
-		if !int(position.x) % 16 and Arrived == false:
-			pass
-		else:
-			CurrentDirection = Directions.None
-			Arrived = true
+		CurrentDirection = Directions.None
+		BarrierCollider.position = CenterTrans.position
 
+
+#Barrier Checks
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("Barrier"):
+		CurrentDirection = Directions.None
+		BarrierCollider.position = CenterTrans.position

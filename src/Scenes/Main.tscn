@@ -15,3 +15,18 @@ smoothing_enabled = true
 [node name="CurrentMap" type="Node2D" parent="LevelController"]
 
 [node name="DevLevel" parent="LevelController/CurrentMap" instance=ExtResource( 2 )]
+
+[node name="Button" type="Label" parent="."]
+margin_left = 1104.0
+margin_top = 16.0
+margin_right = 1189.0
+margin_bottom = 52.0
+rect_scale = Vector2( 2.36, 2.36 )
+text = "CONTROLS:
+
+Left: Move Owner Left
+Right: Move Owner Right
+
+Up: Come Here
+Down: Go
+Right Shift: Stop!"
