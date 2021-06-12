@@ -2,13 +2,13 @@
 Theme: Joined Together
 
 ### Team
-Nathanael L. Mann........Lead Designer
-Austin Brown.............Lead Programmer
-Ethan G. Culver..........Graphic Design
-Sierra Goldman...........Animation & Sprite Design
-Andrew Smith.............Music and SFX
-Joshua Carrier...........Programmer
-Alexander J. Le..........Additional Design
+* Nathanael L. Mann........Lead Designer
+* Austin Brown.............Lead Programmer
+* Ethan G. Culver..........Graphic Design
+* Sierra Goldman...........Animation & Sprite Design
+* Andrew Smith.............Music and SFX
+* Joshua Carrier...........Programmer
+* Alexander J. Le..........Additional Design
 
 ### Game: Fetch
 In Fetch, you play as a human, trying to guide their dog through a series of puzzles from the other side of a fence. 
