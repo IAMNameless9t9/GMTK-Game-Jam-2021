@@ -2,12 +2,12 @@ extends Area2D
 
 var tile_size = 16 * 4
 var transition_speed = 2
-var inputs = {"left": Vector2.LEFT, "right": Vector2.RIGHT, "up": Vector2.UP, "down": Vector2.DOWN}
+var inputs = {"up": Vector2.UP, "down": Vector2.DOWN}
 
 onready var ray = $RayCast2D
 onready var tween = $Tween
 
-
+var EnableSnapping = true
 #Command Interpretation
 
 var KnownCommands = ["left", "right", "come", "go"]
@@ -24,23 +24,19 @@ func _ready():
 func _unhandled_input(event):
 	if tween.is_active():
 		return
-	var indexOfCommand = KnownCommands.find(CurrentCommand)
-	var currentIndex = 0
 	for dir in inputs.keys():
-		if currentIndex == indexOfCommand:
-			move(dir)
-			CurrentCommand = ""
-		currentIndex += 1
+		if event.is_action_pressed(dir):
+			move_snapped(dir)
 			
-func move(dir):
-	ray.cast_to = inputs[dir] * tile_size * deltaTime
+func move_snapped(dir):
+	ray.cast_to = inputs[dir] * (tile_size * 2) * deltaTime
 	ray.force_raycast_update()
 	if !ray.is_colliding():
 		##position += inputs[dir] * tile_size
 		
-		move_tween(dir)
+		move_tween_snapped(dir)
 		
-func move_tween(dir):
+func move_tween_snapped(dir):
 	tween.interpolate_property(self, "position",
 		position, position + inputs[dir] * tile_size,
 		1.0/transition_speed, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
