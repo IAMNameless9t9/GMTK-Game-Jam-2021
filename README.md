@@ -19,4 +19,3 @@ Fetch was made for the GMTK 2021 Game Jam.
 + Sierra Goldman...........Sprites and Animation
 ##### Sound
 + Eric Matyas..............BGM (Soundimage.org)
-+ ??????...................SFX
