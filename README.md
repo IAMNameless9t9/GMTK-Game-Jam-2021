@@ -1,4 +1,4 @@
-# GMTK-Game-Jam-2021
+# Fetch: GMTK-Game-Jam-2021
 Theme: Joined Together
 
 ### Team
