@@ -87,6 +87,10 @@ func _on_Area2D_body_entered(body):
 	if body.is_in_group("Barrier"):
 		CurrentDirection = Directions.None
 		BarrierCollider.position = CenterTrans.position
+		
+func _currentlyMoving():
+	if GoTowardsOwner or GoAwayFromOwner:
+		return true
 	
 	
 

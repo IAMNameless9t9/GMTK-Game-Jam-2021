@@ -14,6 +14,7 @@ onready var LeftTrans = $Area2D/Left
 onready var RightTrans = $Area2D/Right
 onready var CenterTrans = $Area2D/Center
 
+var Dog = null
 
 ##MOVEMENT VARIABLES
 export var MovementSpeed = 64 * 4
@@ -32,6 +33,8 @@ func _ready():
 	position = Spawnpoint
 	BarrierCollider.position = CenterTrans.position
 	
+	Dog = get_parent().get_node("Dog")
+	
 func _physics_process(delta):
 	
 	var X = position.x
@@ -48,6 +51,11 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity)
 	
 func _process(delta):
+	
+	if Dog._currentlyMoving():
+		CanMove = false
+	else:
+		CanMove = true
 	
 	PositionLabel.text = "OwnPosition\nX: " + str(position.x) + "\nY: " + str(position.y)
 	
