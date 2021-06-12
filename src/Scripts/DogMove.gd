@@ -1,36 +1,54 @@
-extends KinematicBody2D
+extends Area2D
 
-var direction = ""
-var speed = 60
-var tileSize = 25
-var held_directions = []
+var tile_size = 16 * 4
+var transition_speed = 2
+var inputs = {"left": Vector2.LEFT, "right": Vector2.RIGHT, "up": Vector2.UP, "down": Vector2.DOWN}
+
+onready var ray = $RayCast2D
+onready var tween = $Tween
+
+
+#Command Interpretation
+
+var KnownCommands = ["left", "right", "come", "go"]
+var CurrentCommand = ""
+var deltaTime = null
+
+func _process(delta):
+	deltaTime = delta
 
 func _ready():
-	pass
+	position = position.snapped(Vector2.ONE * tile_size)
+	position += Vector2.ONE * (tile_size / 2)
 	
-func _physics_process(delta):
-	
-	for dir in ["left", "right", "up", "down"]:
-		var is_pressed = Input.is_action_pressed("ui_"+dir)
-		var index_of_direction = held_directions.find(dir)
-		if index_of_direction == -1:
-			if is_pressed:
-				held_directions.push_front(dir)
-		else:
-			if not is_pressed:
-				held_directions.remove(index_of_direction)
-				
-		if held_directions.size() > 0:
-			direction = held_directions[0]
-			move_and_slide(_get_movement(direction))
+func _unhandled_input(event):
+	if tween.is_active():
+		return
+	var indexOfCommand = KnownCommands.find(CurrentCommand)
+	var currentIndex = 0
+	for dir in inputs.keys():
+		if currentIndex == indexOfCommand:
+			move(dir)
+			CurrentCommand = ""
+		currentIndex += 1
 			
-func _get_movement(dir):
-	var vectors = {
-		"left": Vector2(-speed, 0),
-		"right": Vector2(speed, 0),
-		"up": Vector2(0, -speed),
-		"down": Vector2(0, speed),
-	}
+func move(dir):
+	ray.cast_to = inputs[dir] * tile_size * deltaTime
+	ray.force_raycast_update()
+	if !ray.is_colliding():
+		##position += inputs[dir] * tile_size
+		
+		move_tween(dir)
+		
+func move_tween(dir):
+	tween.interpolate_property(self, "position",
+		position, position + inputs[dir] * tile_size,
+		1.0/transition_speed, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	tween.start()
 	
-	return vectors[direction]
+func Recieve_Command(command):
+	CurrentCommand = command
+	
+	
+
 

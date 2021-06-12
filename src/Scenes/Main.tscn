@@ -5,9 +5,9 @@
 [node name="Main" type="Node2D"]
 
 [node name="MainCamera" type="Camera2D" parent="."]
-position = Vector2( 392, 328 )
+position = Vector2( 512, 488 )
 current = true
-zoom = Vector2( 1.5, 1.5 )
+zoom = Vector2( 2, 2 )
 smoothing_enabled = true
 
 [node name="LevelController" type="Node2D" parent="."]
