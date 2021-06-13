@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Response.tscn" type="PackedScene" id=1]
+[ext_resource path="res://fonts/robot_mono_24.tres" type="DynamicFont" id=2]
+[ext_resource path="res://InputResponse.gd" type="Script" id=3]
+
+[node name="InputResponse" type="VBoxContainer"]
+margin_right = 984.0
+margin_bottom = 75.0
+custom_constants/separation = 0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InputHistory" type="Label" parent="."]
+margin_right = 984.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.639216, 0.639216, 0.639216, 1 )
+text = " > This is what the user typed"
+autowrap = true
+
+[node name="Response" parent="." instance=ExtResource( 1 )]
