@@ -17,6 +17,6 @@ Fetch was made for the GMTK 2021 Game Jam.
 ##### Graphics
 + Ethan G. Culver..........Lead Graphics Design
 + Sierra Goldman...........Sprites and Animation
-+ Anexor...................Texture Design
++ Alexander J. Le..........Texture Design
 ##### Sound
 + Eric Matyas..............BGM (Soundimage.org)
