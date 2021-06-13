@@ -12,11 +12,11 @@ Fetch was made for the GMTK 2021 Game Jam.
 + Nathanael L. Mann........Lead Designer
 ##### Programming
 + Austin Brown.............Lead Programmer
-+ Andrew Smith.............Programmer
-+ Joshua Carrier...........Programmer
++ Andrew Smith.............Command Interpreter
++ Joshua Carrier...........Testing
 ##### Graphics
 + Ethan G. Culver..........Lead Graphics Design
-+ Sierra Goldman...........Sprites and Animation
-+ Alexander J. Le..........Texture Design
++ Sierra Goldman...........Animation, Title, and Sprites
++ Alexander J. Le..........Sprite Design
 ##### Sound
 + Eric Matyas..............BGM (Soundimage.org)
