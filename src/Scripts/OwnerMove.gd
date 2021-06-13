@@ -50,17 +50,17 @@ func _physics_process(delta):
 	velocity = position.direction_to(Vector2(X,StartingY)) * MovementSpeed
 	velocity = move_and_slide(velocity)
 	
-func _process(delta):
+#func _process(delta):
+#	
+#	if Dog._currentlyMoving():
+#		CanMove = false
+#	else:
+#		CanMove = true
 	
-	if Dog._currentlyMoving():
-		CanMove = false
-	else:
-		CanMove = true
-	
-	PositionLabel.text = "OwnPosition\nX: " + str(position.x) + "\nY: " + str(position.y)
-	
-	if CanMove:
-		_get_input()
+#	PositionLabel.text = "OwnPosition\nX: " + str(position.x) + "\nY: " + str(position.y)
+#	
+#	if CanMove:
+#		_get_input()
 		
 func _get_input():
 	if Input.is_action_pressed("left"):
