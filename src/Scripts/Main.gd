@@ -44,6 +44,7 @@ func _on_LevelSelect_MainMenu_pressed():
 	_swapMenu()
 	$Background.visible = true
 	$NewBackground.visible = false
+	$CreditsScreen.visible = false
 
 func _on_Exit_MainMenu_pressed():
 	get_tree().quit()
@@ -52,8 +53,9 @@ func _on_Credits_MainMenu_pressed():
 	prevMenu = currentMenu
 	currentMenu = Credits
 	_swapMenu()
-	$Background.visible = true
+	$Background.visible = false
 	$NewBackground.visible = false
+	$CreditsScreen.visible = true
 
 func _on_Controls_MainMenu_pressed():
 	prevMenu = currentMenu
@@ -61,6 +63,7 @@ func _on_Controls_MainMenu_pressed():
 	_swapMenu()
 	$Background.visible = true
 	$NewBackground.visible = false
+	$CreditsScreen.visible = false
 
 ## LEVEL SELECT BUTTONS
 func _on_Back_LevelSelect_pressed():
@@ -68,12 +71,14 @@ func _on_Back_LevelSelect_pressed():
 	_swapMenu()
 	$Background.visible = false
 	$NewBackground.visible = true
+	$CreditsScreen.visible = false
 	
 func _on_DevLevel_pressed():
 	currentMenu = null
 	_swapMenu()
 	$Background.visible = false
 	$NewBackground.visible = false
+	$CreditsScreen.visible = false
 	var game = DevMap.instance()
 	$CurrentMap.add_child(game)
 	
@@ -82,6 +87,7 @@ func _on_Level0_pressed():
 	_swapMenu()
 	$Background.visible = false
 	$NewBackground.visible = false
+	$CreditsScreen.visible = false
 	var game = Level0.instance()
 	$CurrentMap.add_child(game)
 
@@ -91,6 +97,7 @@ func _on_Back_Credits_pressed():
 	_swapMenu()
 	$Background.visible = false
 	$NewBackground.visible = true
+	$CreditsScreen.visible = false
 
 ## CONTROLS BUTTONS
 func _on_Back_Controls_pressed():
@@ -98,6 +105,7 @@ func _on_Back_Controls_pressed():
 	_swapMenu()
 	$Background.visible = false
 	$NewBackground.visible = true
+	$CreditsScreen.visible = false
 	
 ## PAUSE MENU
 func _on_Menu_Pause_pressed():
@@ -106,6 +114,7 @@ func _on_Menu_Pause_pressed():
 	_swapMenu()
 	$Background.visible = false
 	$NewBackground.visible = true
+	$CreditsScreen.visible = false
 	enterPause = false
 	$CurrentMap.get_child(0).queue_free()
 
@@ -115,6 +124,7 @@ func _on_LevelSelect_Pause_pressed():
 	_swapMenu()
 	$Background.visible = true
 	$NewBackground.visible = false
+	$CreditsScreen.visible = false
 	enterPause = false
 	$CurrentMap.get_child(0).queue_free()
 
@@ -123,6 +133,7 @@ func _on_Settings_Pause_pressed():
 	prevMenu = Pause
 	$Background.visible = true
 	$NewBackground.visible = false
+	$CreditsScreen.visible = false
 	_swapMenu()
 
 func _on_Exit_Pause_pressed():
@@ -130,4 +141,5 @@ func _on_Exit_Pause_pressed():
 	currentMenu = null
 	$Background.visible = false
 	$NewBackground.visible = false
+	$CreditsScreen.visible = false
 	_swapMenu()

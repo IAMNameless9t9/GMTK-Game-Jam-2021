@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PlayButtonIdle.png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Assets/Background.png" type="Texture" id=6]
 [ext_resource path="res://Assets/NewBackground.png" type="Texture" id=7]
 [ext_resource path="res://Assets/MainTitle.png" type="Texture" id=8]
+[ext_resource path="res://Assets/CreditsScreen.png" type="Texture" id=9]
+[ext_resource path="res://Assets/BackButton.png" type="Texture" id=10]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -294,6 +296,7 @@ visible = false
 z_index = 10
 
 [node name="Title" type="Label" parent="Credits"]
+visible = false
 margin_left = 288.0
 margin_right = 340.0
 margin_bottom = 14.0
@@ -304,11 +307,20 @@ __meta__ = {
 }
 
 [node name="Back_Credits" type="Button" parent="Credits"]
-margin_left = 448.0
-margin_top = 128.0
-margin_right = 512.0
-margin_bottom = 192.0
-text = "Back"
+margin_left = 256.0
+margin_top = 912.0
+margin_right = 752.0
+margin_bottom = 1040.0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Credits/Back_Credits"]
+position = Vector2( 248, 64 )
+scale = Vector2( 2.15625, 2 )
+z_index = 1
+texture = ExtResource( 10 )
 
 [node name="Controls" type="Node2D" parent="."]
 visible = false
@@ -354,6 +366,12 @@ visible = false
 position = Vector2( 512.25, 492 )
 scale = Vector2( 2.00261, 2.01 )
 texture = ExtResource( 6 )
+
+[node name="CreditsScreen" type="Sprite" parent="."]
+visible = false
+position = Vector2( 510.466, 492 )
+scale = Vector2( 1.67616, 1.68991 )
+texture = ExtResource( 9 )
 [connection signal="pressed" from="MainMenu/LevelSelect_MainMenu" to="." method="_on_LevelSelect_MainMenu_pressed"]
 [connection signal="pressed" from="MainMenu/Controls_MainMenu" to="." method="_on_Controls_MainMenu_pressed"]
 [connection signal="pressed" from="MainMenu/Credits_MainMenu" to="." method="_on_Credits_MainMenu_pressed"]
