@@ -1,32 +1,370 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Scenes/DevLevel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
+[ext_resource path="res://Assets/PlayButtonIdle.png" type="Texture" id=2]
+[ext_resource path="res://Assets/QuitButtonIdle.png" type="Texture" id=3]
+[ext_resource path="res://Assets/HelpButtonIdle.png" type="Texture" id=4]
+[ext_resource path="res://Assets/CreditsButtonIdle.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Background.png" type="Texture" id=6]
+[ext_resource path="res://Assets/NewBackground.png" type="Texture" id=7]
+[ext_resource path="res://Assets/MainTitle.png" type="Texture" id=8]
 
 [node name="Main" type="Node2D"]
+script = ExtResource( 1 )
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2( 512, 488 )
+z_index = 2
 current = true
 zoom = Vector2( 2, 2 )
 smoothing_enabled = true
 
-[node name="LevelController" type="Node2D" parent="."]
+[node name="MainMenu" type="Node2D" parent="."]
+z_index = 10
 
-[node name="CurrentMap" type="Node2D" parent="LevelController"]
+[node name="Title" type="Label" parent="MainMenu"]
+margin_left = 192.0
+margin_top = -120.0
+margin_right = 272.0
+margin_bottom = -104.0
+rect_scale = Vector2( 7.87457, 7.87457 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="DevLevel" parent="LevelController/CurrentMap" instance=ExtResource( 2 )]
+[node name="Sprite" type="Sprite" parent="MainMenu/Title"]
+position = Vector2( 40.7641, 6.09557 )
+scale = Vector2( 0.115072, 0.115072 )
+texture = ExtResource( 8 )
 
-[node name="Button" type="Label" parent="."]
-margin_left = 1104.0
+[node name="LevelSelect_MainMenu" type="Button" parent="MainMenu"]
+margin_left = 0.999969
+margin_top = 440.0
+margin_right = 513.0
+margin_bottom = 576.0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="MainMenu/LevelSelect_MainMenu"]
+position = Vector2( 256, 72 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 2 )
+
+[node name="Controls_MainMenu" type="Button" parent="MainMenu"]
+margin_left = -1.99997
+margin_top = 648.0
+margin_right = 511.0
+margin_bottom = 772.0
+text = "Controls"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="MainMenu/Controls_MainMenu"]
+position = Vector2( 257, 61 )
+scale = Vector2( 0.4, 0.39375 )
+texture = ExtResource( 4 )
+
+[node name="Credits_MainMenu" type="Button" parent="MainMenu"]
+margin_left = -1.00003
+margin_top = 832.0
+margin_right = 512.0
+margin_bottom = 958.0
+text = "Credits"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="MainMenu/Credits_MainMenu"]
+position = Vector2( 256, 64 )
+scale = Vector2( 0.401563, 0.3875 )
+texture = ExtResource( 5 )
+
+[node name="Exit_MainMenu" type="Button" parent="MainMenu"]
+margin_left = 0.999969
+margin_top = 1032.0
+margin_right = 515.0
+margin_bottom = 1152.0
+text = "Exit"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="MainMenu/Exit_MainMenu"]
+position = Vector2( 256, 56 )
+scale = Vector2( 0.403125, 0.3875 )
+texture = ExtResource( 3 )
+
+[node name="LevelSelect" type="Node2D" parent="."]
+visible = false
+z_index = 10
+
+[node name="Title" type="Label" parent="LevelSelect"]
+margin_left = 192.0
+margin_top = 8.0
+margin_right = 276.0
+margin_bottom = 22.0
+rect_scale = Vector2( 7.36, 7.36 )
+text = "LEVEL SELECT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DevLevel" type="Button" parent="LevelSelect"]
+margin_left = 64.0
+margin_top = 192.32
+margin_right = 128.0
+margin_bottom = 256.32
+text = "DevLevel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level0" type="Button" parent="LevelSelect"]
+margin_left = 192.0
+margin_top = 128.0
+margin_right = 256.0
+margin_bottom = 192.0
+text = "Level0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level1" type="Button" parent="LevelSelect"]
+margin_left = 384.0
+margin_top = 128.0
+margin_right = 448.0
+margin_bottom = 192.0
+text = "Level1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level2" type="Button" parent="LevelSelect"]
+margin_left = 576.0
+margin_top = 128.0
+margin_right = 640.0
+margin_bottom = 192.0
+text = "Level2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level3" type="Button" parent="LevelSelect"]
+margin_left = 768.0
+margin_top = 128.0
+margin_right = 832.0
+margin_bottom = 192.0
+text = "Level3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level4" type="Button" parent="LevelSelect"]
+margin_left = 192.0
+margin_top = 256.0
+margin_right = 256.0
+margin_bottom = 320.0
+text = "Level4"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level5" type="Button" parent="LevelSelect"]
+margin_left = 384.0
+margin_top = 256.0
+margin_right = 448.0
+margin_bottom = 320.0
+text = "Level5"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level6" type="Button" parent="LevelSelect"]
+margin_left = 576.0
+margin_top = 256.0
+margin_right = 640.0
+margin_bottom = 320.0
+text = "Level6"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level7" type="Button" parent="LevelSelect"]
+margin_left = 768.0
+margin_top = 256.0
+margin_right = 832.0
+margin_bottom = 320.0
+text = "Level7"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back_LevelSelect" type="Button" parent="LevelSelect"]
+margin_left = 480.0
+margin_top = 360.0
+margin_right = 544.0
+margin_bottom = 424.0
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pause" type="Node2D" parent="."]
+visible = false
+z_index = 10
+
+[node name="Title" type="Label" parent="Pause"]
+margin_left = 344.0
 margin_top = 16.0
-margin_right = 1189.0
-margin_bottom = 52.0
-rect_scale = Vector2( 2.36, 2.36 )
-text = "CONTROLS:
+margin_right = 395.0
+margin_bottom = 30.0
+rect_scale = Vector2( 6.24, 6.24 )
+text = "PAUSED"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-Left: Move Owner Left
-Right: Move Owner Right
+[node name="Menu_Pause" type="Button" parent="Pause"]
+margin_left = 160.0
+margin_top = 128.0
+margin_right = 288.0
+margin_bottom = 192.0
+text = "MENU"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-Up: Come Here
-Down: Go
-Right Shift: Stop!"
+[node name="LevelSelect_Pause" type="Button" parent="Pause"]
+margin_left = 352.0
+margin_top = 128.0
+margin_right = 480.0
+margin_bottom = 192.0
+text = "LEVEL SELECT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings_Pause" type="Button" parent="Pause"]
+margin_left = 544.0
+margin_top = 128.0
+margin_right = 672.0
+margin_bottom = 192.0
+text = "SETTINGS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit_Pause" type="Button" parent="Pause"]
+margin_left = 736.0
+margin_top = 128.0
+margin_right = 864.0
+margin_bottom = 192.0
+text = "EXIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="Node2D" parent="."]
+visible = false
+z_index = 10
+
+[node name="Title" type="Label" parent="Settings"]
+margin_left = 264.0
+margin_right = 324.0
+margin_bottom = 14.0
+rect_scale = Vector2( 8.32, 8.32 )
+text = "SETTINGS"
+
+[node name="Back_Settings" type="Button" parent="Settings"]
+margin_left = 448.0
+margin_top = 128.0
+margin_right = 512.0
+margin_bottom = 192.0
+text = "Back"
+
+[node name="Credits" type="Node2D" parent="."]
+visible = false
+z_index = 10
+
+[node name="Title" type="Label" parent="Credits"]
+margin_left = 288.0
+margin_right = 340.0
+margin_bottom = 14.0
+rect_scale = Vector2( 8.6, 8.6 )
+text = "CREDITS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back_Credits" type="Button" parent="Credits"]
+margin_left = 448.0
+margin_top = 128.0
+margin_right = 512.0
+margin_bottom = 192.0
+text = "Back"
+
+[node name="Controls" type="Node2D" parent="."]
+visible = false
+z_index = 10
+
+[node name="Title" type="Label" parent="Controls"]
+margin_left = 216.0
+margin_right = 285.0
+margin_bottom = 14.0
+rect_scale = Vector2( 8.4, 8.4 )
+text = "CONTROLS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back_Controls" type="Button" parent="Controls"]
+margin_left = 448.0
+margin_top = 128.0
+margin_right = 512.0
+margin_bottom = 192.0
+text = "Back"
+
+[node name="CurrentMap" type="Node2D" parent="."]
+
+[node name="Debugger" type="Label" parent="."]
+visible = false
+margin_left = -328.0
+margin_top = 152.0
+margin_right = -296.0
+margin_bottom = 168.0
+rect_scale = Vector2( 2.76, 2.52 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewBackground" type="Sprite" parent="."]
+position = Vector2( 512, 492 )
+scale = Vector2( 2.00348, 2.01 )
+texture = ExtResource( 7 )
+
+[node name="Background" type="Sprite" parent="."]
+visible = false
+position = Vector2( 512.25, 492 )
+scale = Vector2( 2.00261, 2.01 )
+texture = ExtResource( 6 )
+[connection signal="pressed" from="MainMenu/LevelSelect_MainMenu" to="." method="_on_LevelSelect_MainMenu_pressed"]
+[connection signal="pressed" from="MainMenu/Controls_MainMenu" to="." method="_on_Controls_MainMenu_pressed"]
+[connection signal="pressed" from="MainMenu/Credits_MainMenu" to="." method="_on_Credits_MainMenu_pressed"]
+[connection signal="pressed" from="MainMenu/Exit_MainMenu" to="." method="_on_Exit_MainMenu_pressed"]
+[connection signal="pressed" from="LevelSelect/DevLevel" to="." method="_on_DevLevel_pressed"]
+[connection signal="pressed" from="LevelSelect/Level0" to="." method="_on_Level0_pressed"]
+[connection signal="pressed" from="LevelSelect/Back_LevelSelect" to="." method="_on_Back_LevelSelect_pressed"]
+[connection signal="pressed" from="Pause/Menu_Pause" to="." method="_on_Menu_Pause_pressed"]
+[connection signal="pressed" from="Pause/LevelSelect_Pause" to="." method="_on_LevelSelect_Pause_pressed"]
+[connection signal="pressed" from="Pause/Settings_Pause" to="." method="_on_Settings_Pause_pressed"]
+[connection signal="pressed" from="Pause/Exit_Pause" to="." method="_on_Exit_Pause_pressed"]
+[connection signal="pressed" from="Settings/Back_Settings" to="." method="_on_Back_Settings_pressed"]
+[connection signal="pressed" from="Credits/Back_Credits" to="." method="_on_Back_Credits_pressed"]
+[connection signal="pressed" from="Controls/Back_Controls" to="." method="_on_Back_Controls_pressed"]

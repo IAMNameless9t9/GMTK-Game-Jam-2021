@@ -25,8 +25,8 @@ var Arrived = true
 
 ##STARTING POSITION
 var Spawnpoint = Vector2()
-var StartingY = -64
-var StartingX = 512
+export var StartingY = -64
+export var StartingX = 512
 
 func _ready():
 	Spawnpoint = Vector2(StartingX, StartingY)
